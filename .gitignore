@@ -1,0 +1,11 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/Libraries/obj
+/.vs
+/BAL_CRUD/bin/Debug/net5.0
+/BAL_CRUD/obj
+/DAL_CRUD/bin/Debug/net5.0
+/DAL_CRUD/obj
+/Libraries/bin/Debug/net5.0
