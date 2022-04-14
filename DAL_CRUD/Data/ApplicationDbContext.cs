@@ -18,5 +18,7 @@ namespace DAL_CRUD.Data
             base.OnModelCreating(builder);
         }
         public DbSet<Library> Libraries { get; set; }
+        public DbSet<Book> Books { get; set; }
+
     }
 }
