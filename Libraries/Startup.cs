@@ -44,6 +44,8 @@ namespace Libraries
             services.AddTransient<IRepository<Library>, RepositoryLibrary>();
             services.AddTransient<LibraryService, LibraryService>();
 
+            services.AddTransient<IRepository<Book>, RepositoryBook>();
+            services.AddTransient<BookService, BookService>();
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
