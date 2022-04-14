@@ -13,22 +13,22 @@ namespace Libraries.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class LibraryDetailsController : ControllerBase
+    public class BookDetailsController : ControllerBase
     {
-        private readonly LibraryService _LibraryService;
+        private readonly BookService _BookService;
 
-        public LibraryDetailsController(LibraryService ProductService)
+        public BookDetailsController(BookService ProductService)
         {
-            _LibraryService = ProductService;
+            _BookService = ProductService;
         }
 
-        //Add Library
-        [HttpPost("AddLibrary")]
-        public async Task<Object> AddLibrary([FromBody] Library Library)
+        //Add Book
+        [HttpPost("AddBook")]
+        public async Task<Object> AddBook([FromBody] Book Book)
         {
             try
             {
-                await _LibraryService.AddLibrary(Library);
+                await _BookService.AddBook(Book);
                 return true;
             }
             catch (Exception)
@@ -37,13 +37,13 @@ namespace Libraries.Controllers
                 return false;
             }
         }
-        //Delete Library
-        [HttpDelete("DeleteLibrary")]
-        public bool DeleteLibrary(string name, string ownerName)
+        //Delete Book
+        [HttpDelete("DeleteBook")]
+        public bool DeleteBook(string title, string authorName)
         {
             try
             {
-                _LibraryService.DeleteLibrary(name, ownerName);
+                _BookService.DeleteBook(title, authorName);
                 return true;
             }
             catch (Exception)
@@ -51,13 +51,13 @@ namespace Libraries.Controllers
                 return false;
             }
         }
-        //Delete Library
-        [HttpPut("UpdateLibrary")]
-        public bool UpdateLibrary(Library Object)
+        //Delete Book
+        [HttpPut("UpdateBook")]
+        public bool UpdateBook(Book Object)
         {
             try
             {
-                _LibraryService.UpdateLibrary(Object);
+                _BookService.UpdateBook(Object);
                 return true;
             }
             catch (Exception)
@@ -65,11 +65,11 @@ namespace Libraries.Controllers
                 return false;
             }
         }
-        //GET All Library by Name
-        [HttpGet("GetAllLibraryByName")]
-        public Object GetAllLibraryByName(string ownerName)
+        //GET All Book by Name
+        [HttpGet("GetAllBookByName")]
+        public Object GetAllBookByName(string title)
         {
-            var data = _LibraryService.GetLibraryByLibraryTitle(ownerName);
+            var data = _BookService.GetBookByBookTitle(title);
             var json = JsonConvert.SerializeObject(data, Formatting.Indented,
                 new JsonSerializerSettings()
                 {
@@ -79,11 +79,11 @@ namespace Libraries.Controllers
             return json;
         }
 
-        //GET All Library
-        [HttpGet("GetAllLibrarys")]
-        public Object GetAllLibrarys()
+        //GET All Book
+        [HttpGet("GetAllBooks")]
+        public Object GetAllBooks()
         {
-            var data = _LibraryService.GetAllLibrarys();
+            var data = _BookService.GetAllBooks();
             var json = JsonConvert.SerializeObject(data, Formatting.Indented,
                 new JsonSerializerSettings()
                 {
