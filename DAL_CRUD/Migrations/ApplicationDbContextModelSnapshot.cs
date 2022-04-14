@@ -19,14 +19,14 @@ namespace DAL_CRUD.Migrations
                 .HasAnnotation("ProductVersion", "5.0.4")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("DAL_CRUD.Models.Book", b =>
+            modelBuilder.Entity("DAL_CRUD.Models.Library", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("AuthorName")
+                    b.Property<string>("Address")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("CreatedOn")
@@ -35,25 +35,16 @@ namespace DAL_CRUD.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<string>("Language")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<float?>("Price")
-                        .HasColumnType("real");
-
-                    b.Property<DateTime>("PublishedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Title")
+                    b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("TotalPages")
-                        .HasColumnType("int");
+                    b.Property<string>("OwnerName")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
-                    b.ToTable("books", "dbo");
+                    b.ToTable("Library", "dbo");
                 });
 #pragma warning restore 612, 618
         }
