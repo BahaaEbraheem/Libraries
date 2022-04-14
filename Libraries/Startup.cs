@@ -41,8 +41,8 @@ namespace Libraries
             services.AddControllers();
             services.AddHttpClient();
 
-            services.AddTransient<IRepository<Book>, RepositoryBook>();
-            services.AddTransient<BookService, BookService>();
+            services.AddTransient<IRepository<Library>, RepositoryLibrary>();
+            services.AddTransient<LibraryService, LibraryService>();
 
 
             services.AddControllers();
