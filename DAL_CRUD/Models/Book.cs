@@ -6,7 +6,7 @@ using System.Text;
 
 namespace DAL_CRUD.Models
 {
-    [Table("books", Schema = "dbo")]
+    [Table("books"/*, Schema = "dbo"*/)]
     public class Book
     {
         [Key]

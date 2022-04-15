@@ -14,6 +14,8 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using MySqlConnector;
+//using MySql.Data.MySqlClient;
+//using MySQL.Data.EntityFrameworkCore.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -34,11 +36,13 @@ namespace Libraries
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(_configuration.GetConnectionString("DefaultConnection")));
-            //services.AddTransient<MySqlConnection>(_ => new MySqlConnection(_configuration.GetConnectionString("DefaultConnection")));
-            // services.Add(new ServiceDescriptor(typeof(ApplicationDbContext),new ApplicationDbContext()())
-            services.AddControllers();
-            services.AddControllers();
+
+            services.AddCors();
+
+            string mySqlConnectionStr = _configuration.GetConnectionString("DefaultConnection");
+            services.AddDbContextPool<ApplicationDbContext>(options => options.UseMySql(mySqlConnectionStr, ServerVersion.AutoDetect(mySqlConnectionStr)));
+
+ 
             services.AddHttpClient();
 
             services.AddTransient<IRepository<Library>, RepositoryLibrary>();
