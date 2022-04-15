@@ -37,6 +37,7 @@ namespace BAL_CRUD.Services
         //Add Book
         public async Task<Book> AddBook(Book book)
         {
+
             return await _book.Create(book);
         }
 
