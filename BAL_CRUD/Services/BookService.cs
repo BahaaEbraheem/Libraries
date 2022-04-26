@@ -1,5 +1,6 @@
 ﻿using DAL_CRUD.Interface;
 using DAL_CRUD.Models;
+using Microsoft.AspNetCore.Cors;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,6 +9,8 @@ using System.Threading.Tasks;
 
 namespace BAL_CRUD.Services
 {
+    [EnableCors("CorsPolicy")]
+
     public class BookService
     {
         private readonly IRepository<Book> _book;

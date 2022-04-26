@@ -37,7 +37,8 @@ namespace Libraries
         public void ConfigureServices(IServiceCollection services)
         {
 
-            services.AddCors();
+            services.AddCors(options => options.AddPolicy("CorsPolicy", builder =>
+            builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader())); ;
 
             string mySqlConnectionStr = _configuration.GetConnectionString("DefaultConnection");
             services.AddDbContextPool<ApplicationDbContext>(options => options.UseMySql(mySqlConnectionStr, ServerVersion.AutoDetect(mySqlConnectionStr)));
@@ -71,13 +72,14 @@ namespace Libraries
             app.UseHttpsRedirection();
 
             app.UseRouting();
-
+            app.UseCors("CorsPolicy");
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
             });
+          
         }
     }
 }

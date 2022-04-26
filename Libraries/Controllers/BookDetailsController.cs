@@ -1,6 +1,7 @@
 ﻿using BAL_CRUD.Services;
 using DAL_CRUD.Interface;
 using DAL_CRUD.Models;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
@@ -13,6 +14,7 @@ namespace Libraries.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [EnableCors("CorsPolicy")]
     public class BookDetailsController : ControllerBase
     {
         private readonly BookService _BookService;
