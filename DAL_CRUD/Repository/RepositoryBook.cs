@@ -35,7 +35,7 @@ namespace DAL_CRUD.Repository
             {
                 return _dbContext.Books.Where(x => x.IsDeleted == false).ToList();
             }
-            catch (Exception ee)
+            catch (Exception)
             {
                 throw;
             }

@@ -54,18 +54,23 @@ namespace Libraries.Controllers
             }
         }
         //Delete Book
-        [HttpPut("UpdateBook")]
-        public bool UpdateBook(Book Object)
+        [HttpPut("{id}")]
+        public bool UpdateBook([FromRoute] int id, [FromBody] Book book)
         {
-            try
-            {
-                _BookService.UpdateBook(Object);
+           
+                if (id== book.Id)
+                {
+                    _BookService.UpdateBook(book);
                 return true;
+
             }
-            catch (Exception)
+            else
             {
                 return false;
             }
+
+
+
         }
         //GET All Book by Name
         [HttpGet("GetAllBookByName")]

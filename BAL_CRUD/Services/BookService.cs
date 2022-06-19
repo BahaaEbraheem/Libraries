@@ -68,11 +68,7 @@ namespace BAL_CRUD.Services
         {
             try
             {
-                var DataList = _book.GetAll().Where(x => x.IsDeleted != true).ToList();
-                foreach (var item in DataList)
-                {
-                    _book.Update(item);
-                }
+                _book.Update(book);
                 return true;
             }
             catch (Exception)
