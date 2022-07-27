@@ -32,18 +32,15 @@ namespace Libraries.Controllers
         {
             if (user == null)
                 return BadRequest("Invalid Client Request");
-
             if (_appcontext.Users.Any(a=>a.UserName== user.UserName) && _appcontext.Users.Where(a => a.UserName == user.UserName).Any(a=>a.Password==user.Password))
             {
                 var secretkey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("this is my custom Secret key for authentication"));
                 var signingcredintials = new SigningCredentials(secretkey, SecurityAlgorithms.HmacSha256);
-
                 var tokenOptions = new JwtSecurityToken(
                 issuer: "https://localhost:5001",
                 audience: "https://localhost:5001",
                 claims:new List<Claim>(),
                 expires:DateTime.Now.AddMinutes(5),
-               
                 signingCredentials: signingcredintials
                 );
                 var tokenstring = new JwtSecurityTokenHandler().WriteToken(tokenOptions);
