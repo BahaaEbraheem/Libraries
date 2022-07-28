@@ -1,6 +1,7 @@
 ﻿using BAL_CRUD.Services;
 using DAL_CRUD.Interface;
 using DAL_CRUD.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -15,6 +16,7 @@ namespace Libraries.Controllers
     [Route("api/[controller]")]
     [ApiController]
     [EnableCors("CorsPolicy")]
+   
     public class BookDetailsController : ControllerBase
     {
         private readonly BookService _BookService;
@@ -85,9 +87,10 @@ namespace Libraries.Controllers
             );
             return json;
         }
-
         //GET All Book
         [HttpGet("GetAllBooks")]
+        [Authorize]
+
         public Object GetAllBooks()
         {
             var data = _BookService.GetAllBooks();
