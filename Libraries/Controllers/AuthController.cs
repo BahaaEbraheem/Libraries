@@ -1,5 +1,6 @@
 ﻿using DAL_CRUD.Data;
 using DAL_CRUD.Models;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
@@ -15,6 +16,8 @@ namespace Libraries.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [EnableCors("EnableCORS")]
+
     public class AuthController : ControllerBase
     {
         private readonly ApplicationDbContext _appcontext;
@@ -37,8 +40,8 @@ namespace Libraries.Controllers
                 var secretkey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("this is my custom Secret key for authentication"));
                 var signingcredintials = new SigningCredentials(secretkey, SecurityAlgorithms.HmacSha256);
                 var tokenOptions = new JwtSecurityToken(
-                issuer: "https://localhost:5001",
-                audience: "https://localhost:5001",
+                issuer: "https://localhost:44362",
+                audience: "https://localhost:44362",
                 claims:new List<Claim>(),
                 expires:DateTime.Now.AddMinutes(5),
                 signingCredentials: signingcredintials

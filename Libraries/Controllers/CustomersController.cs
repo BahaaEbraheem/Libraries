@@ -1,6 +1,7 @@
 ﻿using BAL_CRUD.Services;
 using DAL_CRUD.Interface;
 using DAL_CRUD.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -13,7 +14,7 @@ namespace Libraries.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [EnableCors("CorsPolicy")]
+    [EnableCors("EnableCORS")]
     public class CustomersController : ControllerBase
     {
         private readonly BookService _BookService;
@@ -24,6 +25,7 @@ namespace Libraries.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         public IEnumerable<string> GetCustomers() => new string[] { "Bahaa Ebraheem", "Sary Jouhara" };
       
     }

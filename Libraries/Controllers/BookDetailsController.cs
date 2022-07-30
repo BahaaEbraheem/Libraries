@@ -15,7 +15,7 @@ namespace Libraries.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [EnableCors("CorsPolicy")]
+    [EnableCors("EnableCORS")]
    
     public class BookDetailsController : ControllerBase
     {

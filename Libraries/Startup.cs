@@ -41,7 +41,7 @@ namespace Libraries
         public void ConfigureServices(IServiceCollection services)
         {
 
-            services.AddCors(options => options.AddPolicy("CorsPolicy", builder =>
+            services.AddCors(options => options.AddPolicy("EnableCORS", builder =>
             builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader())); ;
 
             string mySqlConnectionStr = _configuration.GetConnectionString("DefaultConnection");
@@ -64,8 +64,8 @@ namespace Libraries
                     ValidateAudience = true,
                     ValidateLifetime = true,
                     ValidateIssuerSigningKey = true,
-                    ValidIssuer= "https://localhost:5001",
-                    ValidAudience= "https://localhost:5001",
+                    ValidIssuer= "https://localhost:44362",
+                    ValidAudience= "https://localhost:44362",
                     IssuerSigningKey=new SymmetricSecurityKey(Encoding.UTF8.GetBytes("this is my custom Secret key for authentication"))
                 };
             });
@@ -100,7 +100,7 @@ namespace Libraries
             app.UseHttpsRedirection();
 
             app.UseRouting();
-            app.UseCors("CorsPolicy");
+            app.UseCors("EnableCORS");
             app.UseAuthentication();
             app.UseAuthorization();
 
