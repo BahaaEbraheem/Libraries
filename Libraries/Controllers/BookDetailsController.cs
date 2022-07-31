@@ -89,8 +89,7 @@ namespace Libraries.Controllers
         }
         //GET All Book
         [HttpGet("GetAllBooks")]
-        [Authorize]
-
+        [Authorize(Roles ="Admin")]
         public Object GetAllBooks()
         {
             var data = _BookService.GetAllBooks();

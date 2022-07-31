@@ -37,12 +37,19 @@ namespace Libraries.Controllers
                 return BadRequest("Invalid Client Request");
             if (_appcontext.Users.Any(a=>a.UserName== user.UserName) && _appcontext.Users.Where(a => a.UserName == user.UserName).Any(a=>a.Password==user.Password))
             {
+                var userexist = _appcontext.Users.Where(a => a.UserName == user.UserName && a.Password == user.Password).FirstOrDefault();
+                var roleId = _appcontext.UserRoles.Where(a => a.UserId == userexist.Id).Select(a=>a.RoleId).FirstOrDefault();
+               var roleNAme= _appcontext.Roles.FindAsync(roleId);
+                var claims = new List<Claim>() { 
+                new Claim (ClaimTypes.Name,user.UserName),
+                new Claim(ClaimTypes.Role,roleNAme.Result.Name)
+                };
                 var secretkey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("this is my custom Secret key for authentication"));
                 var signingcredintials = new SigningCredentials(secretkey, SecurityAlgorithms.HmacSha256);
                 var tokenOptions = new JwtSecurityToken(
                 issuer: "https://localhost:44362",
                 audience: "https://localhost:44362",
-                claims:new List<Claim>(),
+                claims:claims,
                 expires:DateTime.Now.AddMinutes(5),
                 signingCredentials: signingcredintials
                 );

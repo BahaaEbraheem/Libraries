@@ -25,7 +25,7 @@ namespace Libraries.Controllers
         }
 
         [HttpGet]
-        [Authorize]
+        [Authorize(Roles = "Manager")]
         public IEnumerable<string> GetCustomers() => new string[] { "Bahaa Ebraheem", "Sary Jouhara" };
       
     }
